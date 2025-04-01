@@ -1,6 +1,7 @@
 import React from "react";
-import { Box, Flex, Link, Text, useBreakpointValue } from "@chakra-ui/react";
+import { Flex, Link, Text, useBreakpointValue } from "@chakra-ui/react";
 import { AnimateStarBorder } from "_/components/custom/animations";
+import { BaseText, TextVariant } from "_/components/custom/base-text";
 
 const ContactWidget = ({
   icon,
@@ -14,6 +15,7 @@ const ContactWidget = ({
   width?: string | number;
 }) => {
   const responsive = useBreakpointValue({ base: false, lg: true });
+
   return (
     <Link
       width={width}
@@ -23,7 +25,7 @@ const ContactWidget = ({
       <AnimateStarBorder
         as="button"
         color="cyan"
-        speed="5s"
+        speed="8s"
         className="cursor-pointer"
       >
         {responsive ? (
@@ -54,7 +56,7 @@ const ContactWidget = ({
             >
               {icon}
             </Flex>
-            <Text fontSize="17px">{value}</Text>
+            <BaseText variant={TextVariant.S}>{value}</BaseText>
           </Flex>
         )}
       </AnimateStarBorder>

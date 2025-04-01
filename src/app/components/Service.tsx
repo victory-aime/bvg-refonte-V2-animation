@@ -2,11 +2,12 @@ import { Box, Flex } from "@chakra-ui/react";
 import React from "react";
 import { VectorSvg } from "_assets/svg";
 import { BaseText, TextVariant } from "_/components/custom/base-text";
-import { GradientText } from "_/components/custom/animations";
-import CircularGallery from "_/components/custom/animations/CircularGallery";
+import { GradientText, CircularGallery } from "_/components/custom/animations";
 import { serviceGallery } from "../data/data";
+import { useColorModeValue } from "_/components/ui/color-mode";
 
 const Service = () => {
+  const textColor = useColorModeValue("black", "white");
   return (
     <Box p={30}>
       <Flex alignItems={"center"} justifyContent={"flex-start"} gap={5}>
@@ -16,7 +17,9 @@ const Service = () => {
           animationSpeed={3}
           showBorder={false}
         >
-          <BaseText variant={TextVariant.H1}>Nos Services</BaseText>
+          <BaseText color={"none"} variant={TextVariant.H1}>
+            Nos Services
+          </BaseText>
         </GradientText>
       </Flex>
       <Flex
@@ -29,7 +32,7 @@ const Service = () => {
         mt={8}
       >
         <Box width={"full"}>
-          <BaseText lineHeight={"2"}>
+          <BaseText lineHeight={"2"} variant={TextVariant.L}>
             Chez BVG-INNOVATION, nous transformons vos idées en solutions
             innovantes sur mesure. En alliant créativité, expertise et
             technologie de pointe,nous propulsons votre entreprise vers le
@@ -40,7 +43,6 @@ const Service = () => {
           style={{
             height: "300px",
             width: "100%",
-
             position: "relative",
             alignItems: "center",
             justifyContent: "center",
@@ -48,7 +50,7 @@ const Service = () => {
         >
           <CircularGallery
             bend={3}
-            textColor="#ffffff"
+            textColor={textColor}
             borderRadius={0.05}
             items={serviceGallery}
           />

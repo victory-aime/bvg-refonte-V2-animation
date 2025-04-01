@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { useField } from "formik";
 import { Field, Text, Textarea } from "@chakra-ui/react";
 import { TextInputProps } from "./FormInput";
+import { useColorModeValue } from "_/components/ui/color-mode";
 
 interface FormTextAreaProps extends TextInputProps {
   minHeight?: string;
@@ -25,9 +26,9 @@ const FormTextArea: FC<FormTextAreaProps> = ({
 
   const [field, { touched, error }] = useField(fieldHookConfig);
   const isError = isReadOnly ? !!error : !!(touched && error);
-
+  const textColor = useColorModeValue("black", "white");
   return (
-    <Field.Root id={name} invalid={isError}>
+    <Field.Root id={name} invalid={isError} color={textColor}>
       {label && (
         <Field.Label display={"flex"} gap={"4px"}>
           {label}
@@ -36,7 +37,7 @@ const FormTextArea: FC<FormTextAreaProps> = ({
       )}
       <Textarea
         {...field}
-        borderColor={isError ? "red.500" : "gray.800"}
+        borderColor={isError ? "red.500" : "gray.300"}
         placeholder={placeholder ?? ""}
         width={width}
         height={height}

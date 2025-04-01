@@ -1,5 +1,6 @@
 import React from "react";
 import "./style/StarBorder.css";
+import { useColorModeValue } from "_/components/ui/color-mode";
 
 type StarBorderProps<T extends React.ElementType> =
   React.ComponentPropsWithoutRef<T> & {
@@ -20,6 +21,14 @@ const AnimateStarBorder = <T extends React.ElementType = "button">({
 }: StarBorderProps<T>) => {
   const Component = as || "button";
 
+  // Définir le background selon le mode clair ou sombre
+  const bgGradient = useColorModeValue(
+    "white", // Mode clair
+    "linear-gradient(to bottom, #060606, #111)" // Mode sombre
+  );
+
+  const borderColor = useColorModeValue("#ccc", "#222");
+
   return (
     <Component className={`star-border-container ${className}`} {...rest}>
       <div
@@ -36,7 +45,15 @@ const AnimateStarBorder = <T extends React.ElementType = "button">({
           animationDuration: speed,
         }}
       ></div>
-      <div className="inner-content">{children}</div>
+      <div
+        className="inner-content"
+        style={{
+          background: bgGradient,
+          border: `1px solid ${borderColor}`,
+        }}
+      >
+        {children}
+      </div>
     </Component>
   );
 };

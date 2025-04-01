@@ -6,6 +6,7 @@ import {
   Grid,
   GridItem,
   VStack,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import {
   AnimatedContent,
@@ -27,6 +28,7 @@ import { RiArrowRightLine } from "react-icons/ri";
 
 const AboutUs = () => {
   const [activeCard, setActiveCard] = useState(1);
+  const responsive = useBreakpointValue({ base: false, sm: false, lg: true });
   const aboutUsText: Record<number, string> = {
     1: "Nous croyons fermement que chaque idée a le potentiel de changer le monde. C'est pourquoi nous nous engageons à faire de vos idées une réalité",
     2: "Notre engagement envers nos clients ne s'arrête pas à la livraison du produit. Nous croyons qu'un service exceptionnel se mesure par la qualité du suivi que nous offrons bien après que votre projet soit en ligne",
@@ -42,7 +44,9 @@ const AboutUs = () => {
           animationSpeed={3}
           showBorder={false}
         >
-          <BaseText variant={TextVariant.H1}>BVG-INNOVATION</BaseText>
+          <BaseText color={"none"} variant={TextVariant.H1}>
+            BVG-INNOVATION
+          </BaseText>
         </GradientText>
       </Flex>
 
@@ -74,21 +78,24 @@ const AboutUs = () => {
               p={0}
               mt={5}
               color={"primary.400"}
+              fontSize={"20px"}
+              fontWeight={"semibold"}
               rightIcon={<RiArrowRightLine />}
             >
-              <BaseText variant={TextVariant.L} weight={TextWeight.SemiBold}>
-                En savoir plus
-              </BaseText>
+              En savoir plus
             </BaseButton>
           </Box>
-          <Box width={"1/2"}>
+          <Box width={{ base: "full", lg: "1/2" }}>
             <StackAnimation
               randomRotation={false}
               sensitivity={180}
               sendToBackOnClick
               onActiveCardChange={setActiveCard}
               cardsData={aboutUsGallery}
-              cardDimensions={{ width: 350, height: 350 }}
+              cardDimensions={{
+                width: responsive ? 350 : 300,
+                height: responsive ? 350 : 300,
+              }}
             />
           </Box>
         </Flex>
@@ -149,6 +156,7 @@ const AboutUs = () => {
                         <BaseText
                           variant={TextVariant.H2}
                           weight={TextWeight.Black}
+                          color={"none"}
                         >
                           {stat?.suffix}
                         </BaseText>

@@ -1,3 +1,6 @@
+import { PhoneRingsIcon, MailIcon } from "_assets/svg";
+import { RiMapPin2Fill } from "react-icons/ri";
+
 const serviceGallery = [
   {
     image: "/assets/images/service/dev-mob.png",
@@ -60,16 +63,49 @@ const links = [
       { label: "Consulting IT", href: "/service/consulting" },
     ],
   },
-  { label: "Produit", href: "" },
   {
-    label: "Societé",
+    label: "A propos",
     href: "",
-    subMenu: [
-      { label: "Equipe", href: "/" },
-      { label: "A propos", href: "/" },
-    ],
   },
   { label: "Contact", href: "" },
 ];
 
-export { links, serviceGallery, aboutUsGallery, stats };
+const socialLinks = [
+  {
+    icon: "/assets/images/social-media/Facebook.png",
+    link: "Avenue Ibn Khaldoun, Suisse, 400, Sousse, Tunisie",
+  },
+  {
+    icon: "/assets/images/social-media/Instagram.png",
+    link: "+(216) 51 719 140 ",
+  },
+  {
+    icon: "/assets/images/social-media/TikTok.png",
+    link: "contact.bgv.innovation@gmail.com",
+  },
+  {
+    icon: "/assets/images/social-media/Linkedin.png",
+    link: "https://www.bvg-innovation.tech",
+  },
+];
+
+const renderContacts = [
+  {
+    icon: <RiMapPin2Fill />,
+    label: "Avenue Ibn Khaldoun, Suisse, 400, Sousse, Tunisie",
+  },
+  { icon: <PhoneRingsIcon fill={"#fff"} />, label: "+(216) 51 719 140 " },
+  {
+    icon: <MailIcon fill={"#fff"} />,
+    label: "contact.bgv.innovation@gmail.com",
+  },
+];
+
+export {
+  links,
+  serviceGallery,
+  aboutUsGallery,
+  stats,
+  socialLinks,
+  renderContacts,
+};

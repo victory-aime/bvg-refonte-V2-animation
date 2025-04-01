@@ -10,6 +10,7 @@ import { useColorMode } from "_/components/ui/color-mode";
 import AboutUs from "./components/AboutUs";
 import OurValues from "./components/OurValues";
 import { ContactUs } from "./components/contact/ContactUs";
+import { Footer } from "./components/Footer";
 
 export default function Home() {
   const { colorMode } = useColorMode();
@@ -38,6 +39,7 @@ export default function Home() {
       <AboutUs />
       <OurValues />
       <ContactUs />
+      <Footer />
     </Box>
   );
 }

@@ -8,7 +8,6 @@ import {
   IconButton,
   Image,
   Link,
-  Text,
   useBreakpointValue,
   VStack,
 } from "@chakra-ui/react";
@@ -33,6 +32,7 @@ import {
 } from "../animations";
 import { BaseText, TextVariant, TextWeight } from "../base-text";
 import { IoIosArrowDown } from "react-icons/io";
+import { usePathname } from "next/navigation";
 
 const HeroBanner: FC<IBannerProps> = ({
   imageSrc = "/assets/images/home/home.png",
@@ -44,6 +44,7 @@ const HeroBanner: FC<IBannerProps> = ({
 }) => {
   const [open, setOpen] = useState<boolean>(false);
   const router = useRouter();
+  const pathname = usePathname();
   const responsiveMode = useBreakpointValue({
     lg: true,
     base: false,
@@ -106,9 +107,10 @@ const HeroBanner: FC<IBannerProps> = ({
                   justifyItems={"center"}
                   borderBottomRightRadius={"full"}
                   placeItems={"center"}
+                  color={"white"}
                   display={"grid"}
                 >
-                  <BaseText ml={-5} variant={TextVariant.XS}>
+                  <BaseText ml={-5} variant={TextVariant.M}>
                     BVG INNOVATION
                   </BaseText>
                 </Box>
@@ -133,8 +135,8 @@ const HeroBanner: FC<IBannerProps> = ({
             </IconButton>
           </Box>
           {responsiveMode ? (
-            <Flex p={8} gap={15} alignItems={"center"}>
-              <Flex gap={10}>
+            <Flex p={8} gap={15} alignItems={"center"} width={"full"}>
+              <Flex width={"full"}>
                 <For each={links ?? []}>
                   {(item, index) =>
                     item.subMenu ? (
@@ -159,13 +161,16 @@ const HeroBanner: FC<IBannerProps> = ({
                                 left: 0,
                                 borderRadius: "full",
                                 height: "4px",
-                                width: "100%",
+                                width: pathname === item.href ? "100%" : "0%",
                                 background:
                                   "linear-gradient(90deg, #1A3C8A, #F6A724, #ffffff)",
                                 backgroundSize: "200% auto",
                                 transition: "all 0.5s",
-                                transform: "translateX(-100%)",
-                                opacity: 0,
+                                transform:
+                                  pathname === item.href
+                                    ? "translateX(0%)"
+                                    : "translateX(-100%)",
+                                opacity: pathname === item.href ? 1 : 0,
                               },
                               "&:hover::after": {
                                 transform: "translateX(0%)",
@@ -181,8 +186,9 @@ const HeroBanner: FC<IBannerProps> = ({
                           >
                             <Flex
                               alignItems={"center"}
-                              justifyContent={"center"}
-                              gap={2}
+                              justifyContent={"flex-start"}
+                              gap={"25px"}
+                              width={"fit-content"}
                               fontSize="20px"
                               textDecoration="none"
                             >
@@ -219,6 +225,7 @@ const HeroBanner: FC<IBannerProps> = ({
                         position="relative"
                         fontSize="20px"
                         color={"white"}
+                        width={"full"}
                         textDecoration="none"
                         p="10px 20px"
                         _hover={{ textDecoration: "none" }}
@@ -230,13 +237,16 @@ const HeroBanner: FC<IBannerProps> = ({
                             left: 0,
                             borderRadius: "full",
                             height: "4px",
-                            width: "100%",
+                            width: pathname === item.href ? "50%" : "0%",
                             background:
                               "linear-gradient(90deg, #1A3C8A, #F6A724, #ffffff)",
                             backgroundSize: "200% auto",
                             transition: "all 0.5s",
-                            transform: "translateX(-100%)",
-                            opacity: 0,
+                            transform:
+                              pathname === item.href
+                                ? "translateX(0%)"
+                                : "translateX(-50%)",
+                            opacity: pathname === item.href ? 1 : 0,
                           },
                           "&:hover::after": {
                             transform: "translateX(0%)",
@@ -246,7 +256,7 @@ const HeroBanner: FC<IBannerProps> = ({
                           "@keyframes gradient-89": {
                             "0%": { backgroundPosition: "100% 0%" },
                             "50%": { backgroundPosition: "0% 0%" },
-                            "100%": { backgroundPosition: "100% 0%" },
+                            "100%": { backgroundPosition: "50% 0%" },
                           },
                         }}
                         href={item.href}
@@ -270,6 +280,7 @@ const HeroBanner: FC<IBannerProps> = ({
             <MobileMenu
               open={open}
               link={links ?? []}
+              pathname={pathname}
               onChange={() => setOpen(false)}
             />
           )}
@@ -277,12 +288,12 @@ const HeroBanner: FC<IBannerProps> = ({
 
         <Center
           p={{ base: "10px", lg: "0" }}
-          mt={{ base: "150px", lg: "100px" }}
+          mt={{ base: "150px", lg: "75px" }}
           flexDir={"column"}
           textAlign="center"
         >
           <VStack alignItems={"center"} gap={"20px"}>
-            <Text
+            <Box
               fontSize={{ base: "20px", lg: "46px" }}
               fontWeight={"semibold"}
               color={"white"}
@@ -326,7 +337,8 @@ const HeroBanner: FC<IBannerProps> = ({
               >
                 {animateText}
               </BaseText>
-            </Text>
+            </Box>
+
             <AnimatedContent
               distance={150}
               direction="vertical"

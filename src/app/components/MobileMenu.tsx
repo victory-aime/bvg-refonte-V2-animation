@@ -25,15 +25,17 @@ import {
 import { IoIosCloseCircle } from "react-icons/io";
 import SwitchColorMode from "_/components/custom/switch-color/SwitchColorMode";
 import { useRouter } from "next/navigation";
-import { BaseText } from "_/components/custom/base-text";
 import { IoIosArrowDown } from "react-icons/io";
+import { useColorModeValue } from "_/components/ui/color-mode";
 
 const MobileMenu = ({
   open,
   link,
   onChange,
+  pathname,
 }: {
   open: boolean;
+  pathname: string;
   link: {
     label: string;
     href: string;
@@ -43,6 +45,7 @@ const MobileMenu = ({
 }) => {
   const router = useRouter();
   const contentRef = useRef<React.RefObject<HTMLElement> | any>(null);
+  const textColor = useColorModeValue("black", "white");
 
   return (
     <DrawerRoot
@@ -54,7 +57,11 @@ const MobileMenu = ({
       <DrawerBackdrop />
       <DrawerContent height={"full"} pos={"absolute"} ref={contentRef}>
         <DrawerHeader>
-          <HStack p={5} justifyContent={"space-between"}>
+          <HStack
+            alignItems={"center"}
+            justifyContent={"space-between"}
+            width={"full"}
+          >
             <DrawerTitle>BVG-INNOVATION</DrawerTitle>
             <DrawerActionTrigger asChild>
               <IconButton
@@ -80,7 +87,44 @@ const MobileMenu = ({
                         placement: "bottom-start",
                       }}
                     >
-                      <MenuTrigger asChild>
+                      <MenuTrigger
+                        asChild
+                        cursor={"pointer"}
+                        position={"relative"}
+                        color={textColor}
+                        alignItems={"center"}
+                        _hover={{ textDecoration: "none" }}
+                        css={{
+                          "&::after": {
+                            content: '""',
+                            position: "absolute",
+                            bottom: 0,
+                            left: 0,
+                            borderRadius: "full",
+                            height: "4px",
+                            width: pathname === item.href ? "100%" : "0%",
+                            background:
+                              "linear-gradient(90deg, #1A3C8A, #F6A724, #ffffff)",
+                            backgroundSize: "200% auto",
+                            transition: "all 0.5s",
+                            transform:
+                              pathname === item.href
+                                ? "translateX(0%)"
+                                : "translateX(-100%)",
+                            opacity: pathname === item.href ? 1 : 0,
+                          },
+                          "&:hover::after": {
+                            transform: "translateX(0%)",
+                            animation: "gradient-89 3s linear infinite",
+                            opacity: 1,
+                          },
+                          "@keyframes gradient-89": {
+                            "0%": { backgroundPosition: "100% 0%" },
+                            "50%": { backgroundPosition: "0% 0%" },
+                            "100%": { backgroundPosition: "100% 0%" },
+                          },
+                        }}
+                      >
                         <Flex
                           alignItems={"center"}
                           gap={2}
@@ -132,13 +176,17 @@ const MobileMenu = ({
                         left: 0,
                         borderRadius: "full",
                         height: "4px",
-                        width: "100%",
+                        //width: "100%",
+                        width: pathname === item.href ? "50%" : "0%",
                         background:
                           "linear-gradient(90deg, #1A3C8A, #F6A724, #ffffff)",
                         backgroundSize: "200% auto",
                         transition: "all 0.5s",
-                        transform: "translateX(-100%)",
-                        opacity: 0,
+                        transform:
+                          pathname === item.href
+                            ? "translateX(0%)"
+                            : "translateX(-50%)",
+                        opacity: pathname === item.href ? 1 : 0,
                       },
                       "&:hover::after": {
                         transform: "translateX(0%)",

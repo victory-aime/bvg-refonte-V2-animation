@@ -1,6 +1,7 @@
 import { Text, TextProps } from "@chakra-ui/react";
 import React from "react";
 import { TextVariant, TextWeight } from "./interface/base-text";
+import { useColorModeValue } from "_/components/ui/color-mode";
 
 interface BaseTextProps extends TextProps {
   variant?: TextVariant | { base: TextVariant; md: TextVariant };
@@ -13,6 +14,7 @@ export const BaseText: React.FC<BaseTextProps> = ({
   children,
   ...props
 }) => {
+  const textColor = useColorModeValue("black", "whiteAlpha.800");
   const sizeMap: Record<TextVariant, string> = {
     [TextVariant.H1]: "32px",
     [TextVariant.H2]: "28px",
@@ -39,6 +41,7 @@ export const BaseText: React.FC<BaseTextProps> = ({
   return (
     <Text
       lineHeight={"2"}
+      color={textColor}
       fontSize={
         typeof variant === "object"
           ? { base: sizeMap[variant.base], md: sizeMap[variant.md] }

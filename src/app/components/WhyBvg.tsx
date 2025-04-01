@@ -81,12 +81,6 @@ const WhyBvg = ({
                 rootMargin="-50px"
                 onLetterAnimationComplete={() => {}}
               />
-              {/* <DecryptedText
-                text={content}
-                animateOn="view"
-                sequential
-                characters="ABCD1234!?"
-              /> */}
             </BaseText>
             {showButton && (
               <BaseButton
@@ -112,7 +106,6 @@ const WhyBvg = ({
         overflow="hidden"
         width="100%"
       >
-        {/* <ScrollVelocity texts={value} /> */}
         <Flex
           whiteSpace="nowrap"
           alignItems={"center"}
@@ -135,6 +128,7 @@ const WhyBvg = ({
                   fontWeight={"semibold"}
                   textAlign={"center"}
                   fontSize={{ base: "meduim", lg: "2xl" }}
+                  color={"none"}
                 >
                   {item}
                 </BaseText>

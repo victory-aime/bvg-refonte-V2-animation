@@ -1,10 +1,6 @@
 import React, { useRef } from "react";
 import "./style/SpotlightCard.css";
-
-interface Position {
-  x: number;
-  y: number;
-}
+import { useColorModeValue } from "_/components/ui/color-mode";
 
 interface SpotlightCardProps extends React.PropsWithChildren {
   className?: string;
@@ -17,6 +13,8 @@ const SpotlightCard: React.FC<SpotlightCardProps> = ({
   spotlightColor = "rgba(255, 255, 255, 0.25)",
 }) => {
   const divRef = useRef<HTMLDivElement>(null);
+  const bgGradient = useColorModeValue("white", "#111");
+  const borderColor = useColorModeValue("#ccc", "#222");
 
   const handleMouseMove: React.MouseEventHandler<HTMLDivElement> = (e) => {
     if (!divRef.current) return;
@@ -35,6 +33,10 @@ const SpotlightCard: React.FC<SpotlightCardProps> = ({
       ref={divRef}
       onMouseMove={handleMouseMove}
       className={`card-spotlight ${className}`}
+      style={{
+        background: bgGradient,
+        border: `1px solid ${borderColor}`,
+      }}
     >
       {children}
     </div>

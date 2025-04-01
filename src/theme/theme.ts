@@ -7,7 +7,6 @@ const config = defineConfig({
   theme: {
     keyframes,
     breakpoints,
-    textStyles: {},
     tokens: {
       animations,
       colors,

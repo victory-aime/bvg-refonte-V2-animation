@@ -1,6 +1,7 @@
 import React from "react";
 import { useField } from "formik";
 import { HTMLChakraProps, Input, Text, Field } from "@chakra-ui/react";
+import { useColorModeValue } from "_/components/ui/color-mode";
 
 export interface TextInputProps extends HTMLChakraProps<"input"> {
   name: string;
@@ -47,9 +48,9 @@ const FormTextInput = ({
   };
   const [field, { touched, error }] = useField(fieldHookConfig);
   const isError = isReadOnly ? !!error : !!(touched && error);
-
+  const textColor = useColorModeValue("black", "white");
   return (
-    <Field.Root id={name} invalid={isError}>
+    <Field.Root id={name} invalid={isError} color={textColor}>
       {label && (
         <Field.Label
           display={"flex"}

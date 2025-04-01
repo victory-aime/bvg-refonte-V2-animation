@@ -18,7 +18,7 @@ const OurValues = () => {
           animationSpeed={3}
           showBorder={false}
         >
-          <BaseText variant={TextVariant.H3}>
+          <BaseText color={"none"} variant={TextVariant.H3}>
             Solutions Numériques Innovantes
           </BaseText>
         </GradientText>
@@ -43,7 +43,7 @@ const OurValues = () => {
           mt={8}
         >
           <Box width={"full"}>
-            <BaseText>
+            <BaseText variant={TextVariant.M}>
               BVG est une entreprise spécialisée dans la création de solutions
               numériques sur mesure. Alliant expertise et créativité, elle
               accompagne ses clients à chaque étape de leurs projets, de la
@@ -52,25 +52,38 @@ const OurValues = () => {
               garantissant des résultats qui dépassent les attentes.
             </BaseText>
           </Box>
-          <Box width={"full"} bgColor={"red"}>
+          <Flex
+            width={"full"}
+            alignItems={"center"}
+            justifyContent={"center"}
+            gap={20}
+          >
             <BaseText>Creative</BaseText>
-            <RotatingText
-              texts={[
-                "Innovation",
-                "Travail d'equipe",
-                "Excellence",
-                "Responsabilite",
-              ]}
-              staggerFrom={"first"}
-              initial={{ y: "100%" }}
-              animate={{ y: 0 }}
-              exit={{ y: "-120%" }}
-              staggerDuration={0.025}
-              splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
-              transition={{ type: "spring", damping: 30, stiffness: 400 }}
-              rotationInterval={2000}
-            />
-          </Box>
+            <Box
+              bg={"linear-gradient(to right, #1A3C8A, #F6A724)"}
+              borderRadius={"7px"}
+              padding={"15px"}
+              color={"white"}
+              fontWeight={"semibold"}
+            >
+              <RotatingText
+                texts={[
+                  "Innovation",
+                  "Travail d'equipe",
+                  "Excellence",
+                  "Responsabilite",
+                ]}
+                staggerFrom={"first"}
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                exit={{ y: "-120%" }}
+                staggerDuration={0.025}
+                splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+                transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                rotationInterval={3000}
+              />
+            </Box>
+          </Flex>
         </Flex>
       </AnimatedContent>
     </Box>

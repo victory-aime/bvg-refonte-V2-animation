@@ -41,12 +41,7 @@ export const ContactUs = () => {
                     value={process.env.NEXT_PUBLIC_BVG_PHONE_NUMBER}
                   />
                 </Flex>
-                <AnimateStarBorder
-                  as="div"
-                  color="cyan"
-                  speed="5s"
-                  className="cursor-pointer"
-                >
+                <AnimateStarBorder as="div" color="cyan" speed="8s">
                   <Box
                     mt={{ base: "16px", lg: "24px" }}
                     width={{ base: "100%", lg: "80vw" }}
@@ -59,7 +54,7 @@ export const ContactUs = () => {
             </Center>
           </Flex>
         ) : (
-          <Box width="100%" bgColor="primary.500">
+          <Box width="100%">
             <Flex
               direction={{ base: "column", lg: "row" }}
               gap={{ base: "16px", lg: "24px" }}
@@ -83,7 +78,6 @@ export const ContactUs = () => {
               p={{ base: 4, lg: 8 }}
               boxShadow="0px 0px 50px 0px rgba(110, 124, 124, 0.1)"
               width={{ base: "100%", lg: "80vw" }}
-              bgColor="yellow"
             >
               <ContactForm />
             </Box>

@@ -12,6 +12,7 @@ import StackAnimation from "./StackAnimation";
 import CountUp from "./CountUp";
 import RotatingText from "./RotateText";
 import AnimateStarBorder from "./AnimateBorder";
+import CircularGallery from "./CircularGallery";
 export {
   BlurText,
   PixelTransition,
@@ -27,4 +28,5 @@ export {
   CountUp,
   RotatingText,
   AnimateStarBorder,
+  CircularGallery,
 };
